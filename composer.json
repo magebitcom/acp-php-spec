@@ -1,0 +1,46 @@
+{
+    "name": "magebitcom/acp-php-spec",
+    "description": "Agentic Commerce Protocol specification for PHP",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Magebit\\AcpSpec\\Api\\": "generated/Magebit/AcpSpec/Api/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Magebit\\AcpSpecGenerator\\": "src/",
+            "Magebit\\AcpSpecGenerator\\Test\\": "tests/"
+        }
+    },
+    "scripts": {
+        "generate": "php generate.php --clean",
+        "check": "php generate.php --check",
+        "test": "phpunit"
+    },
+    "authors": [
+        {
+            "name": "Magebit",
+            "email": "info@magebit.com"
+        }
+    ],
+    "require": {
+        "php": ">=8.1"
+    },
+    "require-dev": {
+        "nette/php-generator": "^4.2",
+        "phpunit/phpunit": "^10.5"
+    },
+    "extra": {
+        "acp": {
+            "spec-target": "2026-04-17",
+            "upstream": {
+                "repository": "https://github.com/agentic-commerce-protocol/agentic-commerce-protocol",
+                "ref": "main",
+                "commit": "7fdd78df677a94dce04c770644b0fbbb1401272b",
+                "path": "spec/2026-04-17"
+            }
+        }
+    }
+}

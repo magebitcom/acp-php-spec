@@ -1,0 +1,45 @@
+{
+    "generator": {
+        "name": "magebitcom/acp-php-spec",
+        "version": "1.0.0"
+    },
+    "upstream": {
+        "repository": "https://github.com/agentic-commerce-protocol/agentic-commerce-protocol",
+        "ref": "main",
+        "commit": "7fdd78df677a94dce04c770644b0fbbb1401272b",
+        "path": "spec/2026-04-17",
+        "license": "Apache-2.0"
+    },
+    "spec": {
+        "target": "2026-04-17",
+        "directory": "spec",
+        "file_count": 16,
+        "generator_inputs": [
+            "json-schema/schema.agentic_checkout.json",
+            "json-schema/schema.cart.json",
+            "json-schema/schema.delegate_authentication.json",
+            "json-schema/schema.delegate_payment.json",
+            "json-schema/schema.discount.json",
+            "json-schema/schema.extension.json",
+            "json-schema/schema.feed.json"
+        ],
+        "files": {
+            "UPSTREAM-LICENSE": "sha256:4458503dd48e88c4e0b945fb252a08b93c40ec757309b8ffa7c594dfa1e35104",
+            "UPSTREAM-NOTICE": "sha256:eef2479db11ee280bbade20296fe6c2ecdc8ce64a8cd086d57b80571d675a290",
+            "json-schema/schema.agentic_checkout.json": "sha256:d0e4290617d66bf05d002b8ace388732be2b3eb9a92a1003db7a2daa1e0436f2",
+            "json-schema/schema.cart.json": "sha256:4480260393132f24da09fb99554dd510822f22345755394c72c2444e24ddd0b3",
+            "json-schema/schema.delegate_authentication.json": "sha256:e550e881594748cb9f69a68e1c5710efa326ed6d4ee5ec8a19330ef86eaa5b52",
+            "json-schema/schema.delegate_payment.json": "sha256:307739ae400e7368eaa25c6024d30751348a4af8a516d071565fcd8aa328cf4d",
+            "json-schema/schema.discount.json": "sha256:792ca48fca11bd1363ce0c5c74aa42b1f5fd5ba5eb3adb8582a4bef872c092ae",
+            "json-schema/schema.extension.json": "sha256:08a4415d66413e712f5a9ceb9fbe651f9a8e4c5c795ce1f7019ffda7d238cfd4",
+            "json-schema/schema.feed.json": "sha256:5ef3eea431f6a860bb810793843018c8ea5b8c17aa60420ad66ebec3575189c4",
+            "openapi/openapi.agentic_checkout.yaml": "sha256:2a0aa239b4aed50732461d9b7e443ad98d5c2d3431277899433ead07cbd4fc55",
+            "openapi/openapi.agentic_checkout_webhook.yaml": "sha256:10f84a9a20658d1990bd514017c8ad8494d8c65bd30568f476da1883b747c1c9",
+            "openapi/openapi.cart.yaml": "sha256:a1125038ddb4fd19ca695f756433b6c605a7dbd84ca1299d04a0375faa97830c",
+            "openapi/openapi.delegate_authentication.yaml": "sha256:ec3fc037c7e7f948a012f7e5278090206dc7a895950a46ac850a3a06e30dfe0d",
+            "openapi/openapi.delegate_payment.yaml": "sha256:ffc98ff3b7a69dd2be5feffe3d91eaf0a687aab31b3fb55b4db63a4e06b4815a",
+            "openapi/openapi.feed.yaml": "sha256:c1462ec8f0a795571b839291bb8f33b1ebf45aadbfee846b04ab443b7410e6c8",
+            "openrpc/openrpc.agentic_checkout.json": "sha256:99692a36eb01dac949bf51837ac64ed4e14f83015de94a3060a83d01ab16ed67"
+        }
+    }
+}
