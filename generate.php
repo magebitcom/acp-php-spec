@@ -16,6 +16,7 @@ use Magebit\AcpSpecGenerator\ManifestWriter;
 
 const ROOT_DIR = __DIR__;
 const SPEC_DIR = __DIR__ . '/spec';
+const RUNTIME_DIR = __DIR__ . '/runtime';
 const SCHEMA_DIR = SPEC_DIR . '/json-schema';
 const OUTPUT_DIR = __DIR__ . '/generated';
 
@@ -59,7 +60,7 @@ function runGeneration(string $outputDir, string $manifestDir, bool $clean): arr
 
     $failures = $generator->getErrors();
 
-    foreach ((new IntegrityChecker())->findDanglingReferences($outputDir) as $fqn => $sources) {
+    foreach ((new IntegrityChecker())->findDanglingReferences($outputDir, RUNTIME_DIR) as $fqn => $sources) {
         $failures[] = "Referenced but never generated: {$fqn} (from " . implode(', ', $sources) . ')';
     }
 

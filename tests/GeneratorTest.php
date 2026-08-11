@@ -21,6 +21,7 @@ class GeneratorTest extends TestCase
     use TempDirectoryTrait;
 
     private const API = 'Magebit/AcpSpec/Api';
+    private const RUNTIME_DIR = __DIR__ . '/../runtime';
 
     /**
      * The bundle namespace is what lets two unrelated Address types coexist without a rename map.
@@ -89,7 +90,43 @@ class GeneratorTest extends TestCase
      */
     public function testGeneratedTreeHasNoDanglingReferences(): void
     {
-        $this->assertSame([], (new IntegrityChecker())->findDanglingReferences($this->generate()));
+        $this->assertSame(
+            [],
+            (new IntegrityChecker())->findDanglingReferences($this->generate(), self::RUNTIME_DIR)
+        );
+    }
+
+    /**
+     * @return void
+     */
+    public function testEveryInterfaceHasAMatchingDto(): void
+    {
+        $output = $this->generate();
+        $iterator = new \RecursiveIteratorIterator(
+            new \RecursiveDirectoryIterator($output . '/' . self::API, \FilesystemIterator::SKIP_DOTS)
+        );
+
+        foreach ($iterator as $file) {
+            if ($file->getExtension() !== 'php') {
+                continue;
+            }
+
+            $dto = str_replace(['/Api/', 'Interface.php'], ['/Data/', '.php'], (string)$file->getPathname());
+
+            $this->assertFileExists($dto, 'Missing DTO for ' . $file->getPathname());
+        }
+    }
+
+    /**
+     * The runtime base is hand-written, so removing it has to fail the gate rather than be exempt.
+     *
+     * @return void
+     */
+    public function testIntegrityCheckFailsWhenTheRuntimeBaseIsMissing(): void
+    {
+        $dangling = (new IntegrityChecker())->findDanglingReferences($this->generate(), $this->makeTempDir());
+
+        $this->assertArrayHasKey('Magebit\\AcpSpec\\Runtime\\SpecObject', $dangling);
     }
 
     /**

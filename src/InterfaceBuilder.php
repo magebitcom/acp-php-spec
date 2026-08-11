@@ -438,7 +438,7 @@ class InterfaceBuilder
     ): void {
         $parentName = $interface->getName();
         $baseType = $this->typeMapper->mapType($property, $currentFile, $parentName, $propertyName);
-        $nullable = !in_array($propertyName, $required, true) && $baseType !== 'mixed' && $baseType !== 'null';
+        $nullable = $this->typeMapper->isNullable($propertyName, $baseType, $required);
 
         $this->phpDocGenerator->addUseStatementsForType($baseType, $namespace);
 

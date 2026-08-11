@@ -1,0 +1,39 @@
+<?php
+
+/**
+ * This file is auto-generated. Do not edit manually.
+ *
+ * @author    Magebit <info@magebit.com>
+ * @copyright Copyright (c) Magebit, Ltd. (https://magebit.com)
+ * @license   MIT
+ */
+
+declare(strict_types=1);
+
+namespace Magebit\AcpSpec\Data\AgenticCheckout;
+
+use Magebit\AcpSpec\Api\AgenticCheckout\AuthenticationMetadataFlowPreferenceChallengeInterface;
+use Magebit\AcpSpec\Runtime\SpecObject;
+
+/**
+ * Details about the requested challenge flow.
+ */
+class AuthenticationMetadataFlowPreferenceChallenge extends SpecObject implements AuthenticationMetadataFlowPreferenceChallengeInterface
+{
+    /**
+     * @return string|null
+     */
+    public function getType(): string|null
+    {
+        return $this->stringOrNull(self::KEY_TYPE);
+    }
+
+    /**
+     * @param string|null $type
+     * @return self
+     */
+    public function setType(string|null $type): self
+    {
+        return $this->set(self::KEY_TYPE, $type);
+    }
+}

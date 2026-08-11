@@ -5,7 +5,9 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Magebit\\AcpSpec\\Api\\": "generated/Magebit/AcpSpec/Api/"
+            "Magebit\\AcpSpec\\Api\\": "generated/Magebit/AcpSpec/Api/",
+            "Magebit\\AcpSpec\\Data\\": "generated/Magebit/AcpSpec/Data/",
+            "Magebit\\AcpSpec\\Runtime\\": "runtime/"
         }
     },
     "autoload-dev": {
