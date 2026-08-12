@@ -119,6 +119,26 @@ class TypeMapper
     }
 
     /**
+     * Shared by the interface and the DTO so a getter and its implementation cannot disagree
+     * about whether a field may be absent.
+     *
+     * @param string $propertyName Name of the property
+     * @param string $baseType Mapped PHP type
+     * @param string[] $required Required property names
+     * @return bool
+     */
+    public function isNullable(string $propertyName, string $baseType, array $required): bool
+    {
+        if (in_array($propertyName, $required, true)) {
+            return false;
+        }
+
+        // "mixed", and any union that already lists null, admit absence on their own; widening them
+        // again produces the redundant "string|null|null" PHP rejects outright.
+        return $baseType !== 'mixed' && !in_array('null', explode('|', $baseType), true);
+    }
+
+    /**
      * @param array $property Property schema definition
      * @return bool True when the property is an inline object needing its own interface
      */

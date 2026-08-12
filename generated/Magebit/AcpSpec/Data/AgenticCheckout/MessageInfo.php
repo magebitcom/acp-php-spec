@@ -1,0 +1,124 @@
+<?php
+
+/**
+ * This file is auto-generated. Do not edit manually.
+ *
+ * @author    Magebit <info@magebit.com>
+ * @copyright Copyright (c) Magebit, Ltd. (https://magebit.com)
+ * @license   MIT
+ */
+
+declare(strict_types=1);
+
+namespace Magebit\AcpSpec\Data\AgenticCheckout;
+
+use Magebit\AcpSpec\Api\AgenticCheckout\MessageInfoInterface;
+use Magebit\AcpSpec\Runtime\SpecObject;
+
+/**
+ * Informational message to display to the buyer during checkout
+ */
+class MessageInfo extends SpecObject implements MessageInfoInterface
+{
+    /**
+     * @return string
+     */
+    public function getType(): string
+    {
+        return $this->requireString(self::KEY_TYPE);
+    }
+
+    /**
+     * @param string $type
+     * @return self
+     */
+    public function setType(string $type): self
+    {
+        return $this->set(self::KEY_TYPE, $type);
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getSeverity(): string|null
+    {
+        return $this->stringOrNull(self::KEY_SEVERITY);
+    }
+
+    /**
+     * @param string|null $severity
+     * @return self
+     */
+    public function setSeverity(string|null $severity): self
+    {
+        return $this->set(self::KEY_SEVERITY, $severity);
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getResolution(): string|null
+    {
+        return $this->stringOrNull(self::KEY_RESOLUTION);
+    }
+
+    /**
+     * @param string|null $resolution
+     * @return self
+     */
+    public function setResolution(string|null $resolution): self
+    {
+        return $this->set(self::KEY_RESOLUTION, $resolution);
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getParam(): string|null
+    {
+        return $this->stringOrNull(self::KEY_PARAM);
+    }
+
+    /**
+     * @param string|null $param
+     * @return self
+     */
+    public function setParam(string|null $param): self
+    {
+        return $this->set(self::KEY_PARAM, $param);
+    }
+
+    /**
+     * @return string
+     */
+    public function getContentType(): string
+    {
+        return $this->requireString(self::KEY_CONTENT_TYPE);
+    }
+
+    /**
+     * @param string $contentType
+     * @return self
+     */
+    public function setContentType(string $contentType): self
+    {
+        return $this->set(self::KEY_CONTENT_TYPE, $contentType);
+    }
+
+    /**
+     * @return string
+     */
+    public function getContent(): string
+    {
+        return $this->requireString(self::KEY_CONTENT);
+    }
+
+    /**
+     * @param string $content
+     * @return self
+     */
+    public function setContent(string $content): self
+    {
+        return $this->set(self::KEY_CONTENT, $content);
+    }
+}

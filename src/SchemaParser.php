@@ -15,6 +15,7 @@ class SchemaParser
 {
     public const ROOT_NAMESPACE = 'Magebit\\AcpSpec';
     public const API_NAMESPACE = self::ROOT_NAMESPACE . '\\Api';
+    public const DATA_NAMESPACE = self::ROOT_NAMESPACE . '\\Data';
 
     private array $loadedSchemas = [];
     private string $baseDir;

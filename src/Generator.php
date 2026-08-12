@@ -17,6 +17,7 @@ class Generator
     private TypeMapper $typeMapper;
     private PhpDocGenerator $phpDocGenerator;
     private InterfaceBuilder $builder;
+    private DtoBuilder $dtoBuilder;
     private string $specDir;
     private string $outputDir;
     private array $errors = [];
@@ -34,6 +35,12 @@ class Generator
         $this->typeMapper = new TypeMapper($this->parser);
         $this->phpDocGenerator = new PhpDocGenerator($this->parser, $this->typeMapper);
         $this->builder = new InterfaceBuilder($this->parser, $this->typeMapper, $this->phpDocGenerator);
+        $this->dtoBuilder = new DtoBuilder(
+            $this->parser,
+            $this->typeMapper,
+            $this->phpDocGenerator,
+            $this->builder
+        );
     }
 
     /**
@@ -55,7 +62,8 @@ class Generator
             $this->processBundle($schemaFile);
         }
 
-        echo "\nGenerated " . count($this->builder->getGeneratedInterfaces()) . " interfaces into {$this->outputDir}\n";
+        echo "\nGenerated " . count($this->builder->getGeneratedInterfaces()) . ' interfaces and '
+            . count($this->dtoBuilder->getGeneratedDtos()) . " DTOs into {$this->outputDir}\n";
     }
 
     /**
@@ -193,6 +201,9 @@ class Generator
         try {
             $file = $this->builder->buildInterface($interfaceName, $schema, $namespace, $currentFile);
             $this->builder->saveInterface($file, $this->outputDir, $namespace, $interfaceName);
+
+            $dto = $this->dtoBuilder->buildDto($interfaceName, $schema, $namespace, $currentFile);
+            $this->dtoBuilder->saveDto($dto, $this->outputDir, $namespace, $interfaceName);
         } catch (\RuntimeException $e) {
             $this->recordError("Cannot build {$namespace}\\{$interfaceName}: " . $e->getMessage());
             return;
@@ -278,6 +289,9 @@ class Generator
                 $currentFile
             );
             $this->builder->saveInterface($file, $this->outputDir, $namespace, $interfaceName);
+
+            $dto = $this->dtoBuilder->buildDto($interfaceName, $property, $namespace, $currentFile);
+            $this->dtoBuilder->saveDto($dto, $this->outputDir, $namespace, $interfaceName);
         } catch (\RuntimeException $e) {
             $this->recordError("Cannot build {$namespace}\\{$interfaceName}: " . $e->getMessage());
             return;
