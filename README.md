@@ -143,13 +143,20 @@ read but which the HTTP surface depends on. `spec.generator_inputs` lists the su
 To move to a new spec release: re-copy `spec/`, update all four `extra.acp.upstream` fields and
 `extra.acp.spec-target` in `composer.json`, run `php generate.php --clean`, and release a new MAJOR.
 
-### Note on `Item.quantity`
+### Known upstream defect: `Item.quantity`
 
-`Item` is `additionalProperties: false` and does not declare `quantity`. An earlier note here called
-that an upstream defect on the grounds that "every upstream example sends it". That is wrong: checked
-across every bundle, JSON Schema and OpenAPI, **no example nests `quantity` inside `item`**. It belongs
-on `LineItem`, which requires it, alongside `LineItem.totals[]` for per-item money. Only `Item`'s own
-description text mentions quantity, and that text is stale.
+`Item` is `additionalProperties: false` and declares only `{id, name, unit_amount}`, yet the request
+examples send a `quantity` alongside `id`. `CartCreateRequest`'s own example is
+`{"line_items": [{"id": "item_123", "quantity": 2}]}`, and both `CheckoutSessionCreateRequest` and
+`CartCreateRequest` type `line_items` as `Item`. An agent adding two of something has nowhere to put the
+two. **Accept it leniently** until this is resolved upstream.
+
+Note the distinction, because it is easy to get backwards: on the **response** side there is no defect —
+`quantity` sits on `LineItem` beside `item`, which is correct, and no example nests it inside the `item`
+wrapper. The contradiction is on the **request** side only.
+
+A third inconsistency in the same area: `CheckoutSessionCreateRequest`'s example sends `items` with
+`product_id`, while the schema says `line_items` with `Item.id`.
 
 ## Tests
 
