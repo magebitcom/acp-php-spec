@@ -52,6 +52,7 @@ interface LineItemInterface
 
     public const CONSTRAINTS = [
         'quantity' => ['minimum' => 1],
+        'images' => ['items' => ['format' => 'uri']],
         'available_quantity' => ['minimum' => 0],
         'max_quantity_per_order' => ['minimum' => 1],
         'fulfillable_on' => ['format' => 'date-time'],

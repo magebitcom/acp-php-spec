@@ -25,6 +25,7 @@ interface ErrorInterface
     public const TYPE_INVALID_REQUEST = 'invalid_request';
     public const TYPE_PROCESSING_ERROR = 'processing_error';
     public const TYPE_SERVICE_UNAVAILABLE = 'service_unavailable';
+    public const CONSTRAINTS = ['supported_versions' => ['items' => ['pattern' => '^\d{4}-\d{2}-\d{2}$']]];
 
     /**
      * Error type indicating the category of protocol-level error

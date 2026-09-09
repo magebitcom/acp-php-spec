@@ -34,6 +34,7 @@ interface PaymentHandlerInterface
         'version' => ['pattern' => '^\d{4}-\d{2}-\d{2}$'],
         'spec' => ['format' => 'uri'],
         'config_schema' => ['format' => 'uri'],
+        'instrument_schemas' => ['items' => ['format' => 'uri']],
     ];
 
     /**

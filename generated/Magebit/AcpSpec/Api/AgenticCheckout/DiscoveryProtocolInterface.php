@@ -25,6 +25,7 @@ interface DiscoveryProtocolInterface
 
     public const CONSTRAINTS = [
         'version' => ['pattern' => '^\d{4}-\d{2}-\d{2}$'],
+        'supported_versions' => ['items' => ['pattern' => '^\d{4}-\d{2}-\d{2}$']],
         'documentation_url' => ['format' => 'uri'],
     ];
 

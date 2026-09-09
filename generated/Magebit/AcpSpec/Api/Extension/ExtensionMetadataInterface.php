@@ -35,8 +35,14 @@ interface ExtensionMetadataInterface
         'id' => [
             'pattern' => '^[a-z][a-z0-9_-]*(@\d{4}-\d{2}-\d{2})?$|^[a-z][a-z0-9]*(?:\.[a-z][a-z0-9_-]*)+(@\d{4}-\d{2}-\d{2})?$',
         ],
+        'extends' => ['items' => ['pattern' => '^\$\.[A-Za-z][A-Za-z0-9]*(\.[A-Za-z][A-Za-z0-9_]*)*$']],
         'spec' => ['format' => 'uri'],
         'schema' => ['format' => 'uri'],
+        'depends_on' => [
+            'items' => [
+                'pattern' => '^[a-z][a-z0-9_-]*(@\d{4}-\d{2}-\d{2})?$|^[a-z][a-z0-9]*(?:\.[a-z][a-z0-9_-]*)+(@\d{4}-\d{2}-\d{2})?$',
+            ],
+        ],
     ];
 
     /**
