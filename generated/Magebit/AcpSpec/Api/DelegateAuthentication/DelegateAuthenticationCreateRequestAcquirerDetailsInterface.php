@@ -23,6 +23,14 @@ interface DelegateAuthenticationCreateRequestAcquirerDetailsInterface
     public const KEY_MERCHANT_NAME = 'merchant_name';
     public const KEY_REQUESTOR_ID = 'requestor_id';
 
+    public const CONSTRAINTS = [
+        'acquirer_bin' => ['maxLength' => 11],
+        'acquirer_country' => ['minLength' => 2, 'maxLength' => 2],
+        'acquirer_merchant_id' => ['maxLength' => 35],
+        'merchant_name' => ['maxLength' => 40],
+        'requestor_id' => ['maxLength' => 35],
+    ];
+
     /**
      * The Acquirer BIN.
      *

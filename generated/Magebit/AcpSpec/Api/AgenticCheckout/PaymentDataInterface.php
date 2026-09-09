@@ -29,6 +29,7 @@ interface PaymentDataInterface
     public const PAYMENT_TERMS_NET_30 = 'net_30';
     public const PAYMENT_TERMS_NET_60 = 'net_60';
     public const PAYMENT_TERMS_NET_90 = 'net_90';
+    public const CONSTRAINTS = ['due_date' => ['format' => 'date-time']];
 
     /**
      * ID of the payment handler to use

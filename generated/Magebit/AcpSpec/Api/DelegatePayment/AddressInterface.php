@@ -25,6 +25,15 @@ interface AddressInterface
     public const KEY_COUNTRY = 'country';
     public const KEY_POSTAL_CODE = 'postal_code';
 
+    public const CONSTRAINTS = [
+        'name' => ['maxLength' => 256],
+        'line_one' => ['maxLength' => 60],
+        'line_two' => ['maxLength' => 60],
+        'city' => ['maxLength' => 60],
+        'country' => ['minLength' => 2, 'maxLength' => 2],
+        'postal_code' => ['maxLength' => 20],
+    ];
+
     /**
      * Full name of the person at this address
      *

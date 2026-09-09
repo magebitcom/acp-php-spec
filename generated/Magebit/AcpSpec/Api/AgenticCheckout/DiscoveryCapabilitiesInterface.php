@@ -22,6 +22,7 @@ interface DiscoveryCapabilitiesInterface
     public const KEY_INTERVENTION_TYPES = 'intervention_types';
     public const KEY_SUPPORTED_CURRENCIES = 'supported_currencies';
     public const KEY_SUPPORTED_LOCALES = 'supported_locales';
+    public const CONSTRAINTS = ['supported_currencies' => ['items' => ['pattern' => '^[a-z]{3}$']]];
 
     /**
      * Services available from this seller. Indicates which ACP operations are implemented. This enum is closed per API version; new values are introduced in new API versions. Agents MAY treat the set as exhaustive for a given version.

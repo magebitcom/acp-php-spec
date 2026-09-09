@@ -20,6 +20,7 @@ interface DiscoveryExtensionInterface
     public const KEY_NAME = 'name';
     public const KEY_SPEC = 'spec';
     public const KEY_SCHEMA = 'schema';
+    public const CONSTRAINTS = ['spec' => ['format' => 'uri'], 'schema' => ['format' => 'uri']];
 
     /**
      * Extension identifier (e.g., "discount", "fulfillment").

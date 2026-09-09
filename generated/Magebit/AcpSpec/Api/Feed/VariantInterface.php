@@ -32,6 +32,7 @@ interface VariantInterface
     public const KEY_MEDIA = 'media';
     public const KEY_SELLER = 'seller';
     public const KEY_MARKETPLACE = 'marketplace';
+    public const CONSTRAINTS = ['url' => ['format' => 'uri']];
 
     /**
      * Stable global identifier for this variant.

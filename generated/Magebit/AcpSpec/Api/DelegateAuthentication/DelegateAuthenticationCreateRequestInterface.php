@@ -26,6 +26,7 @@ interface DelegateAuthenticationCreateRequestInterface
     public const KEY_FLOW_PREFERENCE = 'flow_preference';
     public const KEY_CHALLENGE_NOTIFICATION_URL = 'challenge_notification_url';
     public const KEY_SHOPPER_DETAILS = 'shopper_details';
+    public const CONSTRAINTS = ['challenge_notification_url' => ['format' => 'uri']];
 
     /**
      * Merchant identifier

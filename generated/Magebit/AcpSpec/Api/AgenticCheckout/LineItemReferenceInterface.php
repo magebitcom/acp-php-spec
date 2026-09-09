@@ -19,6 +19,7 @@ interface LineItemReferenceInterface
 {
     public const KEY_ID = 'id';
     public const KEY_QUANTITY = 'quantity';
+    public const CONSTRAINTS = ['quantity' => ['minimum' => 1]];
 
     /**
      * Line item ID reference

@@ -32,6 +32,7 @@ interface ErrorInterface
     public const CODE_TOO_MANY_REQUESTS = 'too_many_requests';
     public const CODE_IDEMPOTENCY_KEY_REQUIRED = 'idempotency_key_required';
     public const CODE_IDEMPOTENCY_IN_FLIGHT = 'idempotency_in_flight';
+    public const CONSTRAINTS = ['supported_versions' => ['items' => ['pattern' => '^\d{4}-\d{2}-\d{2}$']]];
 
     /**
      * High-level error category

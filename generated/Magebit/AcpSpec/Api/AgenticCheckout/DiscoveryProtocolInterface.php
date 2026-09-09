@@ -23,6 +23,12 @@ interface DiscoveryProtocolInterface
     public const KEY_DOCUMENTATION_URL = 'documentation_url';
     public const NAME_ACP = 'acp';
 
+    public const CONSTRAINTS = [
+        'version' => ['pattern' => '^\d{4}-\d{2}-\d{2}$'],
+        'supported_versions' => ['items' => ['pattern' => '^\d{4}-\d{2}-\d{2}$']],
+        'documentation_url' => ['format' => 'uri'],
+    ];
+
     /**
      * Protocol identifier. Always "acp".
      *

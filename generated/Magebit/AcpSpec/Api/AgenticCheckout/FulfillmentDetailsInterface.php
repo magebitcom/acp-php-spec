@@ -21,6 +21,7 @@ interface FulfillmentDetailsInterface
     public const KEY_PHONE_NUMBER = 'phone_number';
     public const KEY_EMAIL = 'email';
     public const KEY_ADDRESS = 'address';
+    public const CONSTRAINTS = ['email' => ['format' => 'email']];
 
     /**
      * Full name for fulfillment contact

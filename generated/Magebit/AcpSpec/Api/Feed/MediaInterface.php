@@ -22,6 +22,7 @@ interface MediaInterface
     public const KEY_ALT_TEXT = 'alt_text';
     public const KEY_WIDTH = 'width';
     public const KEY_HEIGHT = 'height';
+    public const CONSTRAINTS = ['url' => ['format' => 'uri']];
 
     /**
      * Media kind, such as image, video, or model.

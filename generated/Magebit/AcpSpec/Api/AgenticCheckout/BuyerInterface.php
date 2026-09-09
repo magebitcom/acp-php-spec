@@ -34,6 +34,7 @@ interface BuyerInterface
     public const AUTHENTICATION_STATUS_AUTHENTICATED = 'authenticated';
     public const AUTHENTICATION_STATUS_GUEST = 'guest';
     public const AUTHENTICATION_STATUS_REQUIRES_SIGNIN = 'requires_signin';
+    public const CONSTRAINTS = ['email' => ['format' => 'email']];
 
     /**
      * Buyer's first name

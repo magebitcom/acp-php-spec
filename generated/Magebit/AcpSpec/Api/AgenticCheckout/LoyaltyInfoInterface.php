@@ -20,6 +20,7 @@ interface LoyaltyInfoInterface
     public const KEY_TIER = 'tier';
     public const KEY_POINTS_BALANCE = 'points_balance';
     public const KEY_MEMBER_SINCE = 'member_since';
+    public const CONSTRAINTS = ['member_since' => ['format' => 'date-time']];
 
     /**
      * Loyalty program tier level

@@ -21,6 +21,7 @@ interface ChallengeActionInterface
     public const KEY_ACS_TRANS_ID = 'acs_trans_id';
     public const KEY_THREE_DS_SERVER_TRANS_ID = 'three_ds_server_trans_id';
     public const KEY_MESSAGE_VERSION = 'message_version';
+    public const CONSTRAINTS = ['acs_url' => ['format' => 'uri']];
 
     /**
      * URL to POST challenge request to

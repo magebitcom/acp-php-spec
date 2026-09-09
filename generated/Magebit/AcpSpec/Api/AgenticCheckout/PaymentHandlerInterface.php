@@ -30,6 +30,13 @@ interface PaymentHandlerInterface
     public const KEY_CONFIG = 'config';
     public const KEY_DISPLAY_ORDER = 'display_order';
 
+    public const CONSTRAINTS = [
+        'version' => ['pattern' => '^\d{4}-\d{2}-\d{2}$'],
+        'spec' => ['format' => 'uri'],
+        'config_schema' => ['format' => 'uri'],
+        'instrument_schemas' => ['items' => ['format' => 'uri']],
+    ];
+
     /**
      * Seller-defined handler identifier
      *

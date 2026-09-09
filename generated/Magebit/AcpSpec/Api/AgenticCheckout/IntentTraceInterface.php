@@ -30,6 +30,7 @@ interface IntentTraceInterface
     public const REASON_CODE_COMPARISON = 'comparison';
     public const REASON_CODE_TIMING_DEFERRED = 'timing_deferred';
     public const REASON_CODE_OTHER = 'other';
+    public const CONSTRAINTS = ['trace_summary' => ['maxLength' => 500]];
 
     /**
      * Reason for abandonment. This enum is extensible: servers SHOULD accept unrecognized values and treat them as 'other' (see RFC Section 7.2). Validators SHOULD be configured for lenient enum handling.

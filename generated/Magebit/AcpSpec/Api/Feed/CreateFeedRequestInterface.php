@@ -18,6 +18,7 @@ namespace Magebit\AcpSpec\Api\Feed;
 interface CreateFeedRequestInterface
 {
     public const KEY_TARGET_COUNTRY = 'target_country';
+    public const CONSTRAINTS = ['target_country' => ['pattern' => '^[A-Z]{2}$']];
 
     /**
      * Optional ISO 3166-1 alpha-2 country code describing the feed's target market.

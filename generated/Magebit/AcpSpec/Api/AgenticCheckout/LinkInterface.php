@@ -28,6 +28,7 @@ interface LinkInterface
     public const TYPE_ABOUT_US = 'about_us';
     public const TYPE_FAQ = 'faq';
     public const TYPE_SUPPORT = 'support';
+    public const CONSTRAINTS = ['url' => ['format' => 'uri']];
 
     /**
      * Type of link

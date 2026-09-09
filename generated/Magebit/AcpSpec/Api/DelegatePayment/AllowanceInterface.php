@@ -25,6 +25,12 @@ interface AllowanceInterface
     public const KEY_EXPIRES_AT = 'expires_at';
     public const REASON_ONE_TIME = 'one_time';
 
+    public const CONSTRAINTS = [
+        'currency' => ['pattern' => '^[a-z]{3}$'],
+        'merchant_id' => ['maxLength' => 256],
+        'expires_at' => ['format' => 'date-time'],
+    ];
+
     /**
      * Usage pattern for this allowance; currently only one_time is supported
      *

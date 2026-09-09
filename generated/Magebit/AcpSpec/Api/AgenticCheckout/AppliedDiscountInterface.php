@@ -30,6 +30,13 @@ interface AppliedDiscountInterface
     public const METHOD_EACH = 'each';
     public const METHOD_ACROSS = 'across';
 
+    public const CONSTRAINTS = [
+        'amount' => ['minimum' => 0],
+        'start' => ['format' => 'date-time'],
+        'end' => ['format' => 'date-time'],
+        'priority' => ['minimum' => 1],
+    ];
+
     /**
      * Unique identifier for this applied discount instance.
      *

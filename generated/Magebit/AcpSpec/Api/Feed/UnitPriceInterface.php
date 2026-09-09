@@ -21,6 +21,7 @@ interface UnitPriceInterface
     public const KEY_CURRENCY = 'currency';
     public const KEY_MEASURE = 'measure';
     public const KEY_REFERENCE = 'reference';
+    public const CONSTRAINTS = ['amount' => ['minimum' => 0], 'currency' => ['pattern' => '^[A-Z]{3}$']];
 
     /**
      * Normalized price amount expressed in ISO 4217 minor units.

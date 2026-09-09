@@ -22,6 +22,7 @@ interface FulfillmentEventInterface
     public const KEY_OCCURRED_AT = 'occurred_at';
     public const KEY_DESCRIPTION = 'description';
     public const KEY_LOCATION = 'location';
+    public const CONSTRAINTS = ['occurred_at' => ['format' => 'date-time']];
 
     /**
      * Event identifier

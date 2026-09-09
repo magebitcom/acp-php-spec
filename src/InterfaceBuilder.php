@@ -18,6 +18,35 @@ use Nette\PhpGenerator\PsrPrinter;
  */
 class InterfaceBuilder
 {
+    /**
+     * Schema keywords a consumer can check on its own, carried onto the interface so validation does
+     * not have to read the schema files at runtime. Keyword names are kept exactly as the schema
+     * spells them, so a rule can be traced back to its source without a translation table.
+     */
+    private const CARRIED_KEYWORDS = [
+        'minLength',
+        'maxLength',
+        'pattern',
+        'format',
+        'minimum',
+        'maximum',
+        'exclusiveMinimum',
+        'exclusiveMaximum',
+        'minItems',
+        'maxItems',
+    ];
+
+    /**
+     * Name of the constant the carried keywords are emitted under.
+     */
+    private const CONSTRAINTS_CONSTANT = 'CONSTRAINTS';
+
+    /**
+     * How far to follow nested lists. A list of lists is already unusual; anything deeper is a
+     * schema that reaches itself, and following it forever is worse than stopping short.
+     */
+    private const MAX_ITEM_DEPTH = 3;
+
     private SchemaParser $parser;
     private TypeMapper $typeMapper;
     private PhpDocGenerator $phpDocGenerator;
@@ -342,6 +371,8 @@ class InterfaceBuilder
             $this->addValueConstants($interface, (string)$propertyName, $property, $currentFile);
         }
 
+        $this->addConstraintsConstant($interface, $properties, $currentFile);
+
         foreach ($properties as $propertyName => $property) {
             $this->addAccessors($interface, (string)$propertyName, $property, $required, $currentFile, $namespace);
         }
@@ -395,6 +426,83 @@ class InterfaceBuilder
 
             $this->addConstant($interface, $prefix . '_' . strtoupper($suffix), $value);
         }
+    }
+
+    /**
+     * Emit every property's carried keywords as one constant, keyed by field name. One constant
+     * rather than one per rule, because a per-rule name could collide with an enum value constant.
+     *
+     * @param InterfaceType $interface Interface to populate
+     * @param array $properties Property schema definitions, keyed by property name
+     * @param string $currentFile File the properties are declared in
+     * @return void
+     */
+    private function addConstraintsConstant(InterfaceType $interface, array $properties, string $currentFile): void
+    {
+        $constraints = [];
+
+        foreach ($properties as $propertyName => $property) {
+            $rules = $this->carriedKeywords($property, $currentFile);
+
+            if ($rules !== []) {
+                $constraints[$this->toSnakeCase((string)$propertyName)] = $rules;
+            }
+        }
+
+        if ($constraints === []) {
+            return;
+        }
+
+        $interface->addConstant(self::CONSTRAINTS_CONSTANT, $constraints)->setPublic();
+    }
+
+    /**
+     * The rules one property declares, following a reference to wherever it is really defined.
+     *
+     * A list carries its own cardinality here. Rules on its entries are nested under `items`, which
+     * is the only place they can be reported for a list of plain strings or numbers: those get no
+     * interface of their own to carry them. A list of objects nests nothing, because an object
+     * declares no rules at its own level — its properties' rules are on its own interface.
+     *
+     * @param array $property Property schema definition
+     * @param string $currentFile File the property is declared in
+     * @param int $depth Guards against a schema that reaches itself through its own items
+     * @return array<string, scalar|array<string, scalar>> Keyword to value
+     */
+    private function carriedKeywords(array $property, string $currentFile, int $depth = 0): array
+    {
+        if (isset($property['$ref'])) {
+            try {
+                $resolved = $this->parser->resolveRefTarget($property['$ref'], $currentFile);
+            } catch (\RuntimeException $e) {
+                return [];
+            }
+
+            $property = $resolved['schema'];
+            $currentFile = $resolved['file'];
+        }
+
+        $rules = [];
+
+        foreach (self::CARRIED_KEYWORDS as $keyword) {
+            $value = $property[$keyword] ?? null;
+
+            // Booleans are draft-04's spelling of the exclusive bounds, where the limit lives in a
+            // separate keyword. Nothing here declares them that way, and half a rule is worse than none.
+            if (is_string($value) || is_int($value) || is_float($value)) {
+                $rules[$keyword] = $value;
+            }
+        }
+
+        $items = $property['items'] ?? null;
+
+        if (!is_array($items) || $depth >= self::MAX_ITEM_DEPTH) {
+            return $rules;
+        }
+
+        $itemRules = $this->carriedKeywords($items, $currentFile, $depth + 1);
+
+        return $itemRules === [] ? $rules : $rules + ['items' => $itemRules];
     }
 
     /**

@@ -21,6 +21,7 @@ interface MarketingConsentOptionInterface
     public const KEY_DISPLAY_TEXT = 'display_text';
     public const KEY_PRIVACY_POLICY_URL = 'privacy_policy_url';
     public const KEY_IS_SUBSCRIBED = 'is_subscribed';
+    public const CONSTRAINTS = ['privacy_policy_url' => ['format' => 'uri']];
 
     /**
      * Channel for marketing consent.

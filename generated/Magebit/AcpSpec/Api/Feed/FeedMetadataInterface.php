@@ -20,6 +20,7 @@ interface FeedMetadataInterface
     public const KEY_ID = 'id';
     public const KEY_TARGET_COUNTRY = 'target_country';
     public const KEY_UPDATED_AT = 'updated_at';
+    public const CONSTRAINTS = ['target_country' => ['pattern' => '^[A-Z]{2}$'], 'updated_at' => ['format' => 'date-time']];
 
     /**
      * Stable identifier for the feed resource.

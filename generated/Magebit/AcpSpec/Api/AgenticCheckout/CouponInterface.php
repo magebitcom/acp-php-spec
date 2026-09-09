@@ -31,6 +31,15 @@ interface CouponInterface
     public const DURATION_REPEATING = 'repeating';
     public const DURATION_FOREVER = 'forever';
 
+    public const CONSTRAINTS = [
+        'percent_off' => ['minimum' => 0, 'maximum' => 100],
+        'amount_off' => ['minimum' => 0],
+        'currency' => ['pattern' => '^[a-z]{3}$'],
+        'duration_in_months' => ['minimum' => 1],
+        'max_redemptions' => ['minimum' => 1],
+        'times_redeemed' => ['minimum' => 0],
+    ];
+
     /**
      * Unique identifier for the coupon.
      *

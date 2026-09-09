@@ -19,6 +19,7 @@ interface FulfillmentOptionLocalDeliveryDeliveryWindowInterface
 {
     public const KEY_START = 'start';
     public const KEY_END = 'end';
+    public const CONSTRAINTS = ['start' => ['format' => 'date-time'], 'end' => ['format' => 'date-time']];
 
     /**
      * RFC 3339 timestamp for delivery window start

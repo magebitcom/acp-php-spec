@@ -59,6 +59,15 @@ interface CheckoutSessionInterface
     public const STATUS_IN_PROGRESS = 'in_progress';
     public const STATUS_EXPIRED = 'expired';
 
+    public const CONSTRAINTS = [
+        'exchange_rate_timestamp' => ['format' => 'date-time'],
+        'created_at' => ['format' => 'date-time'],
+        'updated_at' => ['format' => 'date-time'],
+        'expires_at' => ['format' => 'date-time'],
+        'continue_url' => ['format' => 'uri'],
+        'quote_expires_at' => ['format' => 'date-time'],
+    ];
+
     /**
      * Unique identifier for the checkout session
      *

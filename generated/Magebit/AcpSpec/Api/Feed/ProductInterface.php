@@ -23,6 +23,7 @@ interface ProductInterface
     public const KEY_URL = 'url';
     public const KEY_MEDIA = 'media';
     public const KEY_VARIANTS = 'variants';
+    public const CONSTRAINTS = ['url' => ['format' => 'uri']];
 
     /**
      * Stable global identifier for this product.
