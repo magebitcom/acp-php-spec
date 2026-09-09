@@ -24,6 +24,7 @@ interface TaxExemptionInterface
     public const CERTIFICATE_TYPE_RESALE = 'resale';
     public const CERTIFICATE_TYPE_EXEMPT_ORGANIZATION = 'exempt_organization';
     public const CERTIFICATE_TYPE_GOVERNMENT = 'government';
+    public const CONSTRAINTS = ['expires_at' => ['format' => 'date-time']];
 
     /**
      * Unique identifier for the tax exemption certificate

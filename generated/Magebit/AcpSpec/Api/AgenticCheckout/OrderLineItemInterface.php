@@ -28,6 +28,7 @@ interface OrderLineItemInterface
     public const KEY_SUBTOTAL = 'subtotal';
     public const KEY_TOTALS = 'totals';
     public const KEY_STATUS = 'status';
+    public const CONSTRAINTS = ['image_url' => ['format' => 'uri'], 'url' => ['format' => 'uri']];
 
     /**
      * Line item identifier, used for references in fulfillments and adjustments

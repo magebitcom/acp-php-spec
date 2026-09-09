@@ -23,6 +23,7 @@ interface PaymentMethodInterface
     public const KEY_EXP_YEAR = 'exp_year';
     public const KEY_NAME = 'name';
     public const TYPE_CARD = 'card';
+    public const CONSTRAINTS = ['exp_month' => ['maxLength' => 2], 'exp_year' => ['maxLength' => 4]];
 
     /**
      * The payment method type

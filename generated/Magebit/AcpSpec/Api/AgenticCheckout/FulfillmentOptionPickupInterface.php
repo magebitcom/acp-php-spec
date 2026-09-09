@@ -30,6 +30,7 @@ interface FulfillmentOptionPickupInterface
     public const PICKUP_TYPE_IN_STORE = 'in_store';
     public const PICKUP_TYPE_CURBSIDE = 'curbside';
     public const PICKUP_TYPE_LOCKER = 'locker';
+    public const CONSTRAINTS = ['ready_by' => ['format' => 'date-time'], 'pickup_by' => ['format' => 'date-time']];
 
     /**
      * Fulfillment type discriminator

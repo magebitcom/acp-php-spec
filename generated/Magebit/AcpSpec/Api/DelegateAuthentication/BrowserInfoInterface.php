@@ -27,6 +27,7 @@ interface BrowserInfoInterface
     public const KEY_SCREEN_HEIGHT = 'screen_height';
     public const KEY_SCREEN_WIDTH = 'screen_width';
     public const KEY_TIMEZONE_OFFSET = 'timezone_offset';
+    public const CONSTRAINTS = ['ip_address' => ['maxLength' => 45], 'language' => ['maxLength' => 35]];
 
     /**
      * HTTP Accept header from the browser

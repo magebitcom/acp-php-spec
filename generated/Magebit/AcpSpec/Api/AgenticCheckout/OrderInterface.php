@@ -32,6 +32,7 @@ interface OrderInterface
     public const KEY_ADJUSTMENTS = 'adjustments';
     public const KEY_TOTALS = 'totals';
     public const TYPE_ORDER = 'order';
+    public const CONSTRAINTS = ['permalink_url' => ['format' => 'uri']];
 
     /**
      * Discriminator field for webhook payloads. Always 'order' when present.

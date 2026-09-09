@@ -21,6 +21,7 @@ interface DiscoveryResponseInterface
     public const KEY_API_BASE_URL = 'api_base_url';
     public const KEY_TRANSPORTS = 'transports';
     public const KEY_CAPABILITIES = 'capabilities';
+    public const CONSTRAINTS = ['api_base_url' => ['format' => 'uri']];
 
     /**
      * @return \Magebit\AcpSpec\Api\AgenticCheckout\DiscoveryProtocolInterface

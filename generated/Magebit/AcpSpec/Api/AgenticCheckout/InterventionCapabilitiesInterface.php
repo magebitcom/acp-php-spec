@@ -34,6 +34,7 @@ interface InterventionCapabilitiesInterface
     public const REDIRECT_CONTEXT_IN_APP = 'in_app';
     public const REDIRECT_CONTEXT_EXTERNAL_BROWSER = 'external_browser';
     public const REDIRECT_CONTEXT_NONE = 'none';
+    public const CONSTRAINTS = ['max_redirects' => ['minimum' => 0], 'max_interaction_depth' => ['minimum' => 1]];
 
     /**
      * Intervention types supported. Agent request: Interventions the agent can handle. Seller response: Intersection of supported interventions.

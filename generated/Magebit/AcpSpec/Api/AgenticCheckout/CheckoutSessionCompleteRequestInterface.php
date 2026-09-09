@@ -24,6 +24,7 @@ interface CheckoutSessionCompleteRequestInterface
     public const KEY_RISK_SIGNALS = 'risk_signals';
     public const KEY_MARKETING_CONSENTS = 'marketing_consents';
     public const KEY_ORDER_NOTES = 'order_notes';
+    public const CONSTRAINTS = ['order_notes' => ['maxLength' => 5000]];
 
     /**
      * Final buyer information

@@ -20,6 +20,7 @@ interface LinkInterface
     public const KEY_TYPE = 'type';
     public const KEY_TITLE = 'title';
     public const KEY_URL = 'url';
+    public const CONSTRAINTS = ['url' => ['format' => 'uri']];
 
     /**
      * Extensible link type, such as privacy_policy, terms_of_service, refund_policy, shipping_policy, or faq.

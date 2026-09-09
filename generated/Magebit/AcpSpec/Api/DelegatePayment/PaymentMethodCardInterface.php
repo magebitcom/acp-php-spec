@@ -41,6 +41,15 @@ interface PaymentMethodCardInterface
     public const DISPLAY_CARD_FUNDING_TYPE_DEBIT = 'debit';
     public const DISPLAY_CARD_FUNDING_TYPE_PREPAID = 'prepaid';
 
+    public const CONSTRAINTS = [
+        'exp_month' => ['maxLength' => 2],
+        'exp_year' => ['maxLength' => 4],
+        'cvc' => ['maxLength' => 4],
+        'eci_value' => ['maxLength' => 2],
+        'iin' => ['maxLength' => 8],
+        'display_last4' => ['minLength' => 4, 'maxLength' => 4, 'pattern' => '^[0-9]{4}$'],
+    ];
+
     /**
      * Payment method type, always 'card'
      *

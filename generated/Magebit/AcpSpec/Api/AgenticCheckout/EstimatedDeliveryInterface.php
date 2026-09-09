@@ -19,6 +19,7 @@ interface EstimatedDeliveryInterface
 {
     public const KEY_EARLIEST = 'earliest';
     public const KEY_LATEST = 'latest';
+    public const CONSTRAINTS = ['earliest' => ['format' => 'date-time'], 'latest' => ['format' => 'date-time']];
 
     /**
      * RFC 3339 timestamp for earliest expected delivery

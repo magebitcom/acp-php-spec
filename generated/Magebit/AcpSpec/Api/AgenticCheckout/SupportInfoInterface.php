@@ -21,6 +21,7 @@ interface SupportInfoInterface
     public const KEY_PHONE = 'phone';
     public const KEY_HOURS = 'hours';
     public const KEY_HELP_CENTER_URL = 'help_center_url';
+    public const CONSTRAINTS = ['email' => ['format' => 'email'], 'help_center_url' => ['format' => 'uri']];
 
     /**
      * Support contact email

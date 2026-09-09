@@ -32,6 +32,7 @@ interface CartInterface
     public const KEY_MESSAGES = 'messages';
     public const KEY_CONTINUE_URL = 'continue_url';
     public const KEY_EXPIRES_AT = 'expires_at';
+    public const CONSTRAINTS = ['continue_url' => ['format' => 'uri'], 'expires_at' => ['format' => 'date-time']];
 
     /**
      * Unique cart identifier, server-generated.

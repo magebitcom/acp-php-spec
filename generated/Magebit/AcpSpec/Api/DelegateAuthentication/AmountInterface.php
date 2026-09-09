@@ -19,6 +19,7 @@ interface AmountInterface
 {
     public const KEY_VALUE = 'value';
     public const KEY_CURRENCY = 'currency';
+    public const CONSTRAINTS = ['currency' => ['pattern' => '^[A-Z]{3}$']];
 
     /**
      * Amount in minor units (e.g., 1000 = €10.00)

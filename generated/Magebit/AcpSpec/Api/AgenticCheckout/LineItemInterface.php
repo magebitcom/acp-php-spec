@@ -50,6 +50,13 @@ interface LineItemInterface
     public const AVAILABILITY_STATUS_BACKORDER = 'backorder';
     public const AVAILABILITY_STATUS_PRE_ORDER = 'pre_order';
 
+    public const CONSTRAINTS = [
+        'quantity' => ['minimum' => 1],
+        'available_quantity' => ['minimum' => 0],
+        'max_quantity_per_order' => ['minimum' => 1],
+        'fulfillable_on' => ['format' => 'date-time'],
+    ];
+
     /**
      * Unique identifier for the line item
      *

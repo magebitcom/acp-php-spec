@@ -27,6 +27,11 @@ interface FulfillmentOptionShippingInterface
     public const KEY_TOTALS = 'totals';
     public const TYPE_SHIPPING = 'shipping';
 
+    public const CONSTRAINTS = [
+        'earliest_delivery_time' => ['format' => 'date-time'],
+        'latest_delivery_time' => ['format' => 'date-time'],
+    ];
+
     /**
      * Fulfillment type discriminator
      *

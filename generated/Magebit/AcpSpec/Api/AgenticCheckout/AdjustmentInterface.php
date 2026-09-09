@@ -26,6 +26,7 @@ interface AdjustmentInterface
     public const KEY_CURRENCY = 'currency';
     public const KEY_DESCRIPTION = 'description';
     public const KEY_REASON = 'reason';
+    public const CONSTRAINTS = ['occurred_at' => ['format' => 'date-time'], 'currency' => ['pattern' => '^[a-z]{3}$']];
 
     /**
      * Adjustment identifier

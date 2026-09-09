@@ -20,6 +20,7 @@ interface FulfillmentDigitalDeliveryInterface
     public const KEY_ACCESS_URL = 'access_url';
     public const KEY_LICENSE_KEY = 'license_key';
     public const KEY_EXPIRES_AT = 'expires_at';
+    public const CONSTRAINTS = ['access_url' => ['format' => 'uri'], 'expires_at' => ['format' => 'date-time']];
 
     /**
      * URL to access digital content (download link, streaming page, etc.)

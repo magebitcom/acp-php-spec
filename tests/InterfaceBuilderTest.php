@@ -12,6 +12,7 @@ use Magebit\AcpSpecGenerator\InterfaceBuilder;
 use Magebit\AcpSpecGenerator\PhpDocGenerator;
 use Magebit\AcpSpecGenerator\SchemaParser;
 use Magebit\AcpSpecGenerator\TypeMapper;
+use Nette\PhpGenerator\PhpFile;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -210,6 +211,84 @@ class InterfaceBuilderTest extends TestCase
             ['Magebit\\AcpSpec\\Api\\Cart\\CartInterface' => ['/spec/schema.other.json']],
             $builder->getCollisions()
         );
+    }
+
+    /**
+     * @return void
+     */
+    public function testCarriedKeywordsAreEmittedAsOneConstantKeyedByField(): void
+    {
+        $dir = $this->makeTempDir();
+        $builder = $this->makeBuilder($dir);
+
+        $file = $builder->buildInterface('Address', [
+            'type' => 'object',
+            'properties' => [
+                'postalCode' => ['type' => 'string', 'maxLength' => 20],
+                'country' => ['type' => 'string', 'pattern' => '^[A-Z]{2}$'],
+                'email' => ['type' => 'string', 'format' => 'email'],
+            ],
+        ], 'Magebit\\AcpSpec\\Api', $dir . '/address.json');
+
+        $this->assertSame(
+            [
+                'postal_code' => ['maxLength' => 20],
+                'country' => ['pattern' => '^[A-Z]{2}$'],
+                'email' => ['format' => 'email'],
+            ],
+            $this->constraintsOf($file)
+        );
+    }
+
+    /**
+     * A schema that constrains nothing must not carry an empty constant, so a consumer can tell
+     * "no rules" from "rules the generator could not read".
+     *
+     * @return void
+     */
+    public function testNoConstantIsEmittedWhenNothingIsConstrained(): void
+    {
+        $dir = $this->makeTempDir();
+        $builder = $this->makeBuilder($dir);
+
+        $file = $builder->buildInterface('Note', [
+            'type' => 'object',
+            'properties' => ['text' => ['type' => 'string']],
+        ], 'Magebit\\AcpSpec\\Api', $dir . '/note.json');
+
+        $this->assertNull($this->constraintsOf($file));
+    }
+
+    /**
+     * @return void
+     */
+    public function testKeywordsAreReadThroughAReference(): void
+    {
+        $dir = $this->makeTempDir();
+        file_put_contents($dir . '/currency.json', json_encode([
+            'type' => 'string',
+            'pattern' => '^[A-Z]{3}$',
+        ]));
+
+        $builder = $this->makeBuilder($dir);
+        $file = $builder->buildInterface('Money', [
+            'type' => 'object',
+            'properties' => ['currency' => ['$ref' => 'currency.json']],
+        ], 'Magebit\\AcpSpec\\Api', $dir . '/money.json');
+
+        $this->assertSame(['currency' => ['pattern' => '^[A-Z]{3}$']], $this->constraintsOf($file));
+    }
+
+    /**
+     * @param PhpFile $file Generated file
+     * @return array<string, array<string, scalar>>|null The emitted rules, or null when none were
+     */
+    private function constraintsOf(PhpFile $file): ?array
+    {
+        $interface = array_values($file->getNamespaces())[0]->getClasses();
+        $constants = array_values($interface)[0]->getConstants();
+
+        return isset($constants['CONSTRAINTS']) ? $constants['CONSTRAINTS']->getValue() : null;
     }
 
     /**

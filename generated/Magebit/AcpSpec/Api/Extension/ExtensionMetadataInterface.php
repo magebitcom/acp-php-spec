@@ -31,6 +31,14 @@ interface ExtensionMetadataInterface
     public const STATUS_DEPRECATED = 'deprecated';
     public const STATUS_RETIRED = 'retired';
 
+    public const CONSTRAINTS = [
+        'id' => [
+            'pattern' => '^[a-z][a-z0-9_-]*(@\d{4}-\d{2}-\d{2})?$|^[a-z][a-z0-9]*(?:\.[a-z][a-z0-9_-]*)+(@\d{4}-\d{2}-\d{2})?$',
+        ],
+        'spec' => ['format' => 'uri'],
+        'schema' => ['format' => 'uri'],
+    ];
+
     /**
      * Unique identifier for the extension.
      *

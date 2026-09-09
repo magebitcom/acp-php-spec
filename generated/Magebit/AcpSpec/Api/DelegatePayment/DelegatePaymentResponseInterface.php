@@ -20,6 +20,7 @@ interface DelegatePaymentResponseInterface
     public const KEY_ID = 'id';
     public const KEY_CREATED = 'created';
     public const KEY_METADATA = 'metadata';
+    public const CONSTRAINTS = ['created' => ['format' => 'date-time']];
 
     /**
      * Unique vault token identifier (vt_...)

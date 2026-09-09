@@ -21,6 +21,12 @@ interface OrderLineItemQuantityInterface
     public const KEY_CURRENT = 'current';
     public const KEY_FULFILLED = 'fulfilled';
 
+    public const CONSTRAINTS = [
+        'ordered' => ['minimum' => 1],
+        'current' => ['minimum' => 0],
+        'fulfilled' => ['minimum' => 0],
+    ];
+
     /**
      * Quantity originally ordered by the customer
      *

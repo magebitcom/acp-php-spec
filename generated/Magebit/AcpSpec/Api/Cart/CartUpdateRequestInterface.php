@@ -22,6 +22,7 @@ interface CartUpdateRequestInterface
 {
     public const KEY_LINE_ITEMS = 'line_items';
     public const KEY_BUYER = 'buyer';
+    public const CONSTRAINTS = ['line_items' => ['minItems' => 1]];
 
     /**
      * Complete list of items (replaces existing cart contents).

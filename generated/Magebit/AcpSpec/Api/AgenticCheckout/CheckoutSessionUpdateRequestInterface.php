@@ -25,6 +25,7 @@ interface CheckoutSessionUpdateRequestInterface
     public const KEY_COUPONS = 'coupons';
     public const KEY_DISCOUNTS = 'discounts';
     public const KEY_ORDER_NOTES = 'order_notes';
+    public const CONSTRAINTS = ['order_notes' => ['maxLength' => 5000]];
 
     /**
      * Updated buyer information

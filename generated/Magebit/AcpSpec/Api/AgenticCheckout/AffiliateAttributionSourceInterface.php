@@ -22,6 +22,7 @@ interface AffiliateAttributionSourceInterface
     public const TYPE_URL = 'url';
     public const TYPE_PLATFORM = 'platform';
     public const TYPE_UNKNOWN = 'unknown';
+    public const CONSTRAINTS = ['url' => ['format' => 'uri']];
 
     /**
      * The type of attribution source.

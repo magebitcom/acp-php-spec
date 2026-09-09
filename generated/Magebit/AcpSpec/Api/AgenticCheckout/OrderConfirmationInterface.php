@@ -22,6 +22,7 @@ interface OrderConfirmationInterface
     public const KEY_RECEIPT_URL = 'receipt_url';
     public const KEY_INVOICE_NUMBER = 'invoice_number';
     public const KEY_ORDER_NOTES = 'order_notes';
+    public const CONSTRAINTS = ['receipt_url' => ['format' => 'uri']];
 
     /**
      * Order confirmation number

@@ -32,6 +32,7 @@ interface FulfillmentInterface
     public const TYPE_SHIPPING = 'shipping';
     public const TYPE_PICKUP = 'pickup';
     public const TYPE_DIGITAL = 'digital';
+    public const CONSTRAINTS = ['tracking_url' => ['format' => 'uri']];
 
     /**
      * Fulfillment identifier

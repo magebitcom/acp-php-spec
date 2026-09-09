@@ -23,6 +23,7 @@ interface CartCreateRequestInterface
     public const KEY_LINE_ITEMS = 'line_items';
     public const KEY_BUYER = 'buyer';
     public const KEY_LOCALE = 'locale';
+    public const CONSTRAINTS = ['line_items' => ['minItems' => 1]];
 
     /**
      * Items to add to the cart.

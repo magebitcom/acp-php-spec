@@ -30,6 +30,7 @@ interface AffiliateAttributionInterface
     public const KEY_TOUCHPOINT = 'touchpoint';
     public const TOUCHPOINT_FIRST = 'first';
     public const TOUCHPOINT_LAST = 'last';
+    public const CONSTRAINTS = ['issued_at' => ['format' => 'date-time'], 'expires_at' => ['format' => 'date-time']];
 
     /**
      * Identifier for the attribution provider / affiliate network namespace (e.g., 'impact.com').

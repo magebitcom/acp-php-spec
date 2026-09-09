@@ -25,6 +25,7 @@ interface DelegateAuthenticationAuthenticateRequestInterface
     public const FINGERPRINT_COMPLETION_Y = 'Y';
     public const FINGERPRINT_COMPLETION_N = 'N';
     public const FINGERPRINT_COMPLETION_U = 'U';
+    public const CONSTRAINTS = ['challenge_notification_url' => ['format' => 'uri']];
 
     /**
      * Result of the 3DS Method fingerprint: Y = Completed successfully, N = Timeout/not completed, U = Unavailable/not performed

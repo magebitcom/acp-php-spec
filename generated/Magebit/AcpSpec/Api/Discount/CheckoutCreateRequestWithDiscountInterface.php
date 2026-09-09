@@ -40,6 +40,7 @@ interface CheckoutCreateRequestWithDiscountInterface
     public const KEY_QUOTE_ID = 'quote_id';
     public const KEY_METADATA = 'metadata';
     public const KEY_ORDER_NOTES = 'order_notes';
+    public const CONSTRAINTS = ['line_items' => ['minItems' => 1], 'order_notes' => ['maxLength' => 5000]];
 
     /**
      * Buyer information
